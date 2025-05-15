@@ -1,33 +1,30 @@
-import { useState } from 'react'
-import { Button, Container, Typography } from '@mui/material';
+import { useState } from "react";
+import { Container, Typography, Box, Button } from "@mui/material";
+import { CityTime } from "./components/CityTime";
+
+const defaultCities = [
+  { city: "Local", offset: 0 },
+  { city: "SLC", offset: -2 },
+  { city: "Austin", offset: 1 },
+  { city: "UTC", offset: 4 },
+  { city: "Serbia", offset: 6 }
+];
 
 function App() {
-  const [count, setCount] = useState(0)
-
-  const handleIncrement = () => {
-    setCount((prevCount) => prevCount + 1);
-    console.log('Incremented count:', count + 1);
-  }
-
-  const handleDecrement = () => {
-    setCount((prevCount) => prevCount - 1);
-    console.log('Decremented count:', count - 1);
-  }
+  const [cities, setCities] = useState(defaultCities);
 
   return (
-    <Container maxWidth="sm" style={{ textAlign: 'center', marginTop: '2rem' }}>
+    <Container maxWidth="md" sx={{ textAlign: "center", mt: 4 }}>
       <Typography variant="h3" gutterBottom>
-        Vite + React + TypeScript + MUI
+        World Clock
       </Typography>
-      <Typography variant="h5">Count: {count}</Typography>
-      <Button variant="contained" color="primary" onClick={handleIncrement}>
-        Increment
-      </Button>
-      <Button variant="contained" color="primary" onClick={handleDecrement}>
-        Decrement
-      </Button>
+      <Box display="flex" flexWrap="wrap" justifyContent="center">
+        {cities.map((c) => (
+          <CityTime key={c.city} city={c.city} offset={c.offset} />
+        ))}
+      </Box>
     </Container>
-  )
+  );
 }
 
-export default App
+export default App;
