@@ -1,0 +1,16 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Debug Vite App in Chrome",
+      "type": "chrome",
+      "request": "launch",
+      "url": "http://localhost:5173",
+      "webRoot": "${workspaceFolder}/src",
+      "preLaunchTask": "Start Docker Dev Environment",
+      "postDebugTask": "Stop Docker Dev Environment",
+      "sourceMaps": true,
+      "breakOnLoad": true
+    }
+  ]
+}
