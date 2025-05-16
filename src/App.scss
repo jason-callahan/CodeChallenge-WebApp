@@ -1,0 +1,44 @@
+#root {
+  // max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+.textfield_dark {
+
+  label {
+    color: white;
+  }
+
+  input {
+    color: white;
+  }
+
+  .Mui-focused label,
+  label.Mui-focused {
+    color: white;
+  }
+
+  .MuiOutlinedInput-root {
+    fieldset {
+      border-color: white;
+    }
+
+    &:hover fieldset {
+      border-color: white;
+    }
+
+    &.Mui-focused fieldset {
+      border-color: white;
+    }
+  }
+}
