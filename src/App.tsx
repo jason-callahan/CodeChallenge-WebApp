@@ -16,9 +16,9 @@ function App() {
 
   return (
     <Container maxWidth="md" sx={{ textAlign: "center", mt: 4 }}>
-      <Typography variant="h3" gutterBottom>
+      {/* <Typography variant="h3" gutterBottom>
         World Clock
-      </Typography>
+      </Typography> */}
       <Box display="flex" flexWrap="wrap" justifyContent="center">
         {cities.map((c) => (
           <CityTime key={c.city} city={c.city} offset={c.offset} />
