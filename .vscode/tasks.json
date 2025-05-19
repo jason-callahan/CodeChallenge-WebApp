@@ -28,7 +28,7 @@
     {
       "label": "Stop Docker Dev Environment",
       "type": "shell",
-      "command": "docker-compose down",
+      "command": "docker-compose down -v",
       "problemMatcher": []
     }
   ]

@@ -10,7 +10,8 @@
       "preLaunchTask": "Start Docker Dev Environment",
       "postDebugTask": "Stop Docker Dev Environment",
       "sourceMaps": true,
-      "breakOnLoad": true
+      "breakOnLoad": true,
+      "endsPattern": "ready in"
     }
   ]
 }

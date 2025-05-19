@@ -17,7 +17,7 @@ interface City {
 const defaultCities: City[] = [
   { city: "Charlotte", offset: 0 },
   { city: "SLC", offset: -2 },
-  { city: "Austin", offset: 1 },
+  { city: "Austin", offset: -1 },
   { city: "UTC", offset: 4 },
   { city: "Belgrade", offset: 6 },
   { city: "Hanoi", offset: 11 }
@@ -58,7 +58,7 @@ function App() {
         variant="outlined"
         onClick={() => setShowForm((prev) => !prev)}
       >
-        {showForm ? "Hide Form" : "Add City"}
+        {showForm ? "Hide Form" : "Add"}
       </Button>
 
       {showForm && (
