@@ -1,0 +1,24 @@
+# This file is used with the vscode rest client extension
+# https://marketplace.visualstudio.com/items?itemName=humao.rest-client
+
+@city = belgrade
+@forecasturl = https://api.open-meteo.com/v1/forecast
+@citysearchurl = https://geocoding-api.open-meteo.com/v1/search
+@latlng = latitude=35.22709&longitude=-80.84313
+@format = temperature_unit=fahrenheit&timezone=auto
+
+
+### Search by city name
+{{citysearchurl}}?name={{city}}
+
+### Get current weather
+{{forecasturl}}?{{latlng}}&current_weather=true&{{format}}
+
+### Get 5 day, min/max temperatures
+{{forecasturl}}?{{latlng}}&daily=temperature_2m_max,temperature_2m_min&{{format}}
+
+### Get current weather
+{{forecasturl}}?{{latlng}}&current=temperature_2m,weathercode&{{format}}
+
+### Get custom weather
+{{forecasturl}}?{{latlng}}&current=temperature_2m,weathercode&daily=temperature_2m_max,temperature_2m_min&{{format}}
