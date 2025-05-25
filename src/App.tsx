@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Container } from "@mui/material";
 import { CitySearch } from "./components/CitySearch";
 import { WeatherCard } from "./components/WeatherCard/WeatherCard";

@@ -1,5 +1,4 @@
 // src/components/ThemeToggleButton.tsx
-import React from 'react';
 import { IconButton } from '@mui/material';
 import { LightMode, ModeNight } from '@mui/icons-material';
 import { useThemeToggle } from '@/theme';

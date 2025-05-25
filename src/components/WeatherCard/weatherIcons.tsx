@@ -11,7 +11,6 @@ import AcUnitIcon from '@mui/icons-material/AcUnit';
 import GrainIcon from '@mui/icons-material/Grain';
 import FlashOnIcon from '@mui/icons-material/FlashOn';
 import ThunderstormIcon from '@mui/icons-material/Thunderstorm';
-import { Water } from '@mui/icons-material';
 
 // Map of weather code → corresponding MUI icon component
 export const WEATHER_CODE_ICONS: Record<number, React.ElementType> = {
