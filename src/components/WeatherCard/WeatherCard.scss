@@ -1,17 +1,32 @@
 // WeatherCard.scss
 
 .weather-card {
-    background-color: #f8f8f8;
-    color: black;
+
     border-radius: 8px;
-    padding: 15px;
+    padding: 8px 12px;
     width: 300px;
     font-family: sans-serif;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    box-shadow: 0 0px 4px rgba(0, 0, 0, 0.1);
-    border: 1px solid #ddd; // ✅ light grey outline
+
+    .weather-card__icon {
+        width: 36px;
+        height: 36px;
+    }
+
+    &.theme-dark {
+        // border: 1px solid rgba(255, 255, 255, 0.4);
+    }
+
+    &.theme-light {
+        // border: 1px solid #ddd;
+        // box-shadow: 0 0px 4px rgba(0, 0, 0, 0.1);
+    }
+}
+
+.weather-card__icon {
+    color: rgb(144, 202, 249)
 }
 
 .weather-card__top {
@@ -20,9 +35,19 @@
     font-size: 16px;
 }
 
-.weather-card__icon {
-    width: 36px;
-    height: 36px;
+.weather-card__range-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .weather-card__range {
+        margin-left: 10px;
+        margin-right: 10px;
+
+        .weather-card__current-temp {
+            font-weight: 500;
+        }
+    }
 }
 
 .weather-card__current-temp {
@@ -31,8 +56,13 @@
 }
 
 .weather-card__time {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     text-align: center;
-    margin: 5px 0 5px 0;
+    margin-top: 12px;
+    margin-bottom: 8px;
+    line-height: 1;
 
     .time-main {
         font-size: 64px;
@@ -53,14 +83,14 @@
 }
 
 .weather-card__city {
-    font-size: 24px;
-    font-weight: 400;
+    .weather-card__name {
+        font-size: 24px;
+        font-weight: 500;
+    }
 }
 
 .weather-card__offset {
     font-size: 16px;
-    color: gray;
-
     padding-left: .3rem;
 }
 
@@ -69,6 +99,7 @@
 
     .day {
         font-size: 18px;
+        line-height: 1;
     }
 
     .ampm {

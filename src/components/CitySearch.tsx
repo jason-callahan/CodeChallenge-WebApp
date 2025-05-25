@@ -2,7 +2,6 @@ import React, { useState, useRef, useEffect } from 'react';
 import {
     Box,
     TextField,
-    Button,
     List,
     ListItem,
     ListItemButton,
@@ -10,7 +9,9 @@ import {
     Typography,
     Paper,
     ClickAwayListener,
+    InputAdornment
 } from '@mui/material';
+import SearchIcon from '@mui/icons-material/Search';
 
 import { useCitySearch } from '@/libs/open-meteo/citySearch';
 import type { CityResult } from '@/libs/open-meteo/citySearch';
@@ -23,18 +24,24 @@ export const CitySearch: React.FC<CitySearchProps> = ({ onSelect }) => {
     const [query, setQuery] = useState('');
     const [open, setOpen] = useState(false);
     const [highlightedIndex, setHighlightedIndex] = useState(-1);
-    const [searchTrigger, setSearchTrigger] = useState("");
+    const [searchTrigger, setSearchTrigger] = useState('');
     const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
 
     const { data, isLoading, error } = useCitySearch(searchTrigger);
     const results = data?.results ?? [];
 
+    // Close dropdown on any edit
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setQuery(e.target.value);
+        setOpen(false);
+        setHighlightedIndex(-1);
+    };
+
     const handleSearch = () => {
-        if (query.trim()) {
-            setSearchTrigger(query.trim());
-            setOpen(true);
-            setHighlightedIndex(0);
-        }
+        if (!query.trim()) return;
+        setSearchTrigger(query.trim());
+        setOpen(true);
+        setHighlightedIndex(-1);
     };
 
     const handleSelect = (city: CityResult) => {
@@ -47,55 +54,62 @@ export const CitySearch: React.FC<CitySearchProps> = ({ onSelect }) => {
 
     const handleKeyDown = (e: React.KeyboardEvent) => {
         if (e.key === 'Enter') {
-            if (!open) {
+            e.preventDefault();
+            if (!open || highlightedIndex < 0) {
                 handleSearch();
-            } else if (highlightedIndex >= 0 && highlightedIndex < results.length) {
-                e.preventDefault();
+            } else {
                 handleSelect(results[highlightedIndex]);
             }
         } else if (e.key === 'ArrowDown' && open) {
             e.preventDefault();
-            setHighlightedIndex((prev) => (prev + 1) % results.length);
+            setHighlightedIndex(prev =>
+                prev + 1 < results.length ? prev + 1 : 0
+            );
         } else if (e.key === 'ArrowUp' && open) {
             e.preventDefault();
-            setHighlightedIndex((prev) => (prev - 1 + results.length) % results.length);
+            setHighlightedIndex(prev =>
+                prev - 1 >= 0 ? prev - 1 : results.length - 1
+            );
         } else if (e.key === 'Escape') {
             setOpen(false);
         }
     };
 
+    // Scroll highlighted item into view
     useEffect(() => {
-        const el = itemRefs.current[highlightedIndex];
-        if (el) {
-            el.scrollIntoView({ block: 'nearest' });
+        if (highlightedIndex >= 0) {
+            const el = itemRefs.current[highlightedIndex];
+            if (el) el.scrollIntoView({ block: 'nearest' });
         }
     }, [highlightedIndex]);
-
-    useEffect(() => {
-        if (results.length > 0) {
-            setHighlightedIndex(0);
-        }
-    }, [results]);
 
     const handleClickAway = () => setOpen(false);
 
     return (
-        <Box sx={{ maxWidth: 400, mx: 'auto', position: 'relative' }}>
-            <Box display="flex" gap={2} mb={2}>
+        <Box sx={{ minWidth: '40%', maxWidth: 600, mx: 'auto', position: 'relative' }}>
+            <Box display="flex" gap={2} alignItems="center" color="primary">
                 <TextField
                     fullWidth
-                    label="Search City"
+                    size="small"
+                    variant="outlined"
+                    label="City Search"
                     value={query}
-                    onChange={(e) => setQuery(e.target.value)}
+                    onChange={handleInputChange}
                     onKeyDown={handleKeyDown}
                     sx={{
                         backgroundColor: 'background.paper',
                         input: { color: 'text.primary' },
                     }}
+                    slotProps={{
+                        input: {
+                            startAdornment: (
+                                <InputAdornment position="start">
+                                    <SearchIcon fontSize="small" />
+                                </InputAdornment>
+                            ),
+                        },
+                    }}
                 />
-                <Button variant="contained" onClick={handleSearch} disabled={isLoading}>
-                    Search
-                </Button>
             </Box>
 
             <ClickAwayListener onClickAway={handleClickAway}>
@@ -117,7 +131,7 @@ export const CitySearch: React.FC<CitySearchProps> = ({ onSelect }) => {
                         {results.map((city, idx) => (
                             <ListItem key={city.id ?? idx} disablePadding>
                                 <ListItemButton
-                                    ref={(el) => {
+                                    ref={el => {
                                         itemRefs.current[idx] = el;
                                     }}
                                     selected={idx === highlightedIndex}

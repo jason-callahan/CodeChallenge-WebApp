@@ -122,3 +122,33 @@ Configure VS Code to debug your Vite React + TypeScript app in Chrome:
 
 **Usage:**  
 Select "Debug Vite App in Chrome" in the Run and Debug panel and start debugging. This launches Chrome, attaches the debugger, and manages your Docker environment if configured.
+
+
+### Tech Used  
+
+- [React](https://react.dev/docs) – UI library
+- [TypeScript](https://www.typescriptlang.org/docs/) – typed JavaScript
+- [Vite](https://vitejs.dev/guide/) – build tool
+- [Docker](https://docs.docker.com/) – containerization
+- [Docker Compose](https://docs.docker.com/compose/) – multi-container orchestration
+- [Tauri](https://tauri.app/v1/guides/) – desktop apps
+- [Capacitor](https://capacitorjs.com/docs) – native mobile wrapper
+- [Android](https://developer.android.com/docs) – mobile platform
+- [VS Code](https://code.visualstudio.com/docs) – code editor
+- [MUI (Material UI)](https://mui.com/material-ui/getting-started/overview/) – React UI component library
+
+- vite - modern front-end build tool
+- react - javascript library for building user interfaces
+- typescript - adds static typing to javascript
+- tauri - framework for building lightweight, secure desktop applications using web technologies
+- docker - containerization platform for consistent and reproducible deployments
+- docker-compose - tool for defining and running multi-container Docker applications
+- capacitor - cross-platform native runtime for building web apps as native mobile apps
+- android - mobile operating system for which the app is packaged and deployed
+- gradle - build automation tool used for Android builds
+- npm - package manager for JavaScript and TypeScript dependencies and scripts
+- vscode - code editor with integrated tasks and debugging support
+- adb - Android Debug Bridge for installing and debugging Android apps
+- shell scripting - automates build and deployment processes
+- chrome - browser used for debugging the web app
+- json - configuration files for tasks and debugging (e.g., launch.json)
