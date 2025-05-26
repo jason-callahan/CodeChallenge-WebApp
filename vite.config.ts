@@ -14,4 +14,5 @@ export default defineConfig({
       ignored: ['**/.archive/**'],
     },
   },
+  base: 'CodeChallenge-WebApp'
 })
