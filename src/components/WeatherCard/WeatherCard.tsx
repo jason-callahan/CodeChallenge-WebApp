@@ -18,6 +18,9 @@ export const WeatherCard: React.FC<WeatherCardProps> = ({ city, onRemove }) => {
     const [date, setDate] = useState(new Date());
     const { mode } = useThemeToggle();
 
+    // new!
+    const [showForecast, setShowForecast] = useState(false);
+
     // Menu state
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const openMenu = Boolean(anchorEl);
@@ -35,13 +38,11 @@ export const WeatherCard: React.FC<WeatherCardProps> = ({ city, onRemove }) => {
             const now = new Date();
             setDate(now);
             const delay = 1000 - now.getMilliseconds();
-
             const timeout = setTimeout(() => {
                 setDate(new Date());
                 const interval = setInterval(() => setDate(new Date()), 1000);
                 cleanupRef.current = () => clearInterval(interval);
             }, delay);
-
             cleanupRef.current = () => clearTimeout(timeout);
         };
         sync();
@@ -52,56 +53,46 @@ export const WeatherCard: React.FC<WeatherCardProps> = ({ city, onRemove }) => {
         new Intl.DateTimeFormat('en-US', { ...options, timeZone: timezone }).format(date);
 
     const time = formatTime({ hour: '2-digit', minute: '2-digit', hour12: false });
-    const seconds = new Intl.NumberFormat('en-US', { minimumIntegerDigits: 2, useGrouping: false }).format(
-        date.getSeconds()
-    );
+    const seconds = new Intl.NumberFormat('en-US', {
+        minimumIntegerDigits: 2,
+        useGrouping: false
+    }).format(date.getSeconds());
     const weekday = formatTime({ weekday: 'short' });
     const ampmTime = formatTime({ hour: 'numeric', minute: '2-digit', hour12: true });
 
-    const getOffsetFromLocalToTimezone = (timeZone: string): number => {
+    const getOffsetFromLocalToTimezone = (tz: string): number => {
         const localDate = new Date();
-        const zonedDate = new Date(
-            localDate.toLocaleString('en-US', { timeZone, hour12: false })
-        );
-        const diffMs = zonedDate.getTime() - localDate.getTime();
-        return Math.round(diffMs / 3_600_000);
+        const zoned = new Date(localDate.toLocaleString('en-US', { timeZone: tz, hour12: false }));
+        return Math.round((zoned.getTime() - localDate.getTime()) / 3_600_000);
     };
-
-    const formatOffset = (offset: number): string => {
-        if (offset === 0) return '';
-        const sign = offset >= 0 ? '+' : '-';
-        return `${sign}${Math.abs(offset)}h`;
-    };
-
+    const formatOffset = (offset: number) => (offset === 0 ? '' : `${offset >= 0 ? '+' : '-'}${Math.abs(offset)}h`);
     const offsetHours = formatOffset(getOffsetFromLocalToTimezone(city.timezone || 'UTC'));
 
     if (isLoading) return <div>Loading...</div>;
     if (error || !data) return <div>Error fetching weather.</div>;
 
-    const current = data.current;
-    const daily = data.daily;
+    const { current, daily } = data;
     const todayIndex = 0;
-
-    // Determine icon component for current weather code
-    const CodeIcon =
-        WEATHER_CODE_ICONS[current.weathercode] ||
-        (WEATHER_CODE_ICONS[0] as React.ElementType);
+    const CodeIcon = WEATHER_CODE_ICONS[current.weathercode] as React.ElementType || WEATHER_CODE_ICONS[0];
 
     return (
         <Paper className={`weather-card theme-${mode}`} elevation={3}>
             <div className="weather-card__top">
-                <CodeIcon fontSize="large" className="weather-card__icon" color="primary" />
+                {/* make this clickable */}
+                <CodeIcon
+                    fontSize="large"
+                    className="weather-card__icon"
+                    color="primary"
+                    onClick={() => setShowForecast(f => !f)}
+                />
 
-                <div className='weather-card__range-wrapper'>
+                <div className="weather-card__range-wrapper">
                     <Typography className="weather-card__range" color="primary">
                         {Math.round(daily.temperature_2m_min[todayIndex])}
                     </Typography>
-
                     <div className="weather-card__current-temp">
                         {Math.round(current.temperature_2m)}°
-                        {/* {data.current_units.temperature_2m} */}
                     </div>
-
                     <Typography className="weather-card__range" color="primary">
                         {Math.round(daily.temperature_2m_max[todayIndex])}
                     </Typography>
@@ -128,32 +119,49 @@ export const WeatherCard: React.FC<WeatherCardProps> = ({ city, onRemove }) => {
                 </Box>
             </div>
 
-            <div className="weather-card__time">
-                <span className="time-main">{time}</span>
-                <span className="time-seconds">:{seconds}</span>
-            </div>
+            {/* toggle time vs. forecast */}
+            {showForecast ? (
+                <div className="weather-card__forecast">
+                    {daily.time.slice(0, 5).map((dateString, i) => {
+
+                        const d = new Date(dateString);
+                        const month = d.getMonth() + 1;
+                        const day = d.getDate();
+                        const code = daily.weathercode[i];
+                        const hi = daily.temperature_2m_max[i];
+                        const lo = daily.temperature_2m_min[i];
+                        const DayIcon = WEATHER_CODE_ICONS[code] as React.ElementType || WEATHER_CODE_ICONS[0];
+
+                        return (
+                            <div key={dateString} className="weather-card__forecast-day">
+                                <Typography component="div" variant="caption">{month}/{day}</Typography>
+                                <div><DayIcon color="primary" fontSize="small" className="weather-card__forecast-icon" /></div>
+                                <Typography color="primary" className="weather-card__forecast-temp">{Math.round(hi)}°</Typography>
+                                <Typography color="primary" className="weather-card__forecast-temp">{Math.round(lo)}°</Typography>
+                            </div>
+                        );
+                    })}
+                </div>
+            ) : (
+                <div className="weather-card__time">
+                    <span className="time-main">{time}</span>
+                    <span className="time-seconds">:{seconds}</span>
+                </div>
+            )}
 
             <div className="weather-card__bottom">
                 <Box className="weather-card__city-row">
                     <Box className="weather-card__city">
-                        <Typography
-                            component="span"
-                            color="warning"               // ← this will pick up warning.main
-                            className="weather-card__name"
-                        >
+                        <Typography component="span" color="warning" className="weather-card__name">
                             {name}
                         </Typography>
-                        <Typography
-                            component="span"
-                            color="primary"
-                            className="weather-card__offset"
-                        >
+                        <Typography component="span" color="primary" className="weather-card__offset">
                             {offsetHours}
                         </Typography>
                     </Box>
                 </Box>
                 <div className="weather-card__daytime">
-                    <Typography className="day" color='primary'>{weekday}</Typography>
+                    <Typography className="day" color="primary">{weekday}</Typography>
                     <div className="ampm">{ampmTime}</div>
                 </div>
             </div>

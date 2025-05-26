@@ -161,4 +161,10 @@ npm run deploy
 - adb - Android Debug Bridge for installing and debugging Android apps
 - shell scripting - automates build and deployment processes
 - chrome - browser used for debugging the web app
-- json - configuration files for tasks and debugging (e.g., launch.json)
+- json - configuration files for tasks and debugging (e.g., launch.json)  
+
+---
+
+### Lighthouse Preformance
+
+![alt text](image.png)

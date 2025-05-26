@@ -4,7 +4,7 @@
 
     border-radius: 8px;
     padding: 8px 12px;
-    width: 300px;
+    width: 320px;
     font-family: sans-serif;
     display: flex;
     flex-direction: column;
@@ -60,8 +60,8 @@
     align-items: center;
     justify-content: center;
     text-align: center;
-    margin-top: 12px;
-    margin-bottom: 8px;
+    margin-top: 19px;
+    margin-bottom: 14px;
     line-height: 1;
 
     .time-main {
@@ -104,5 +104,32 @@
 
     .ampm {
         font-size: 16px;
+    }
+}
+
+.weather-card__forecast {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4px 8px;
+    margin-top: 1px;
+    margin-bottom: 4px;
+
+    .weather-card__forecast-day {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .weather-card__forecast-icon {
+            width: 24px;
+            height: 24px;
+            color: rgb(144, 202, 249);
+        }
+
+        .weather-card__forecast-temp {
+            font-size: 14px;
+            font-weight: 600;
+            line-height: 1.2;
+        }
     }
 }
