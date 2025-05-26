@@ -124,6 +124,16 @@ Configure VS Code to debug your Vite React + TypeScript app in Chrome:
 Select "Debug Vite App in Chrome" in the Run and Debug panel and start debugging. This launches Chrome, attaches the debugger, and manages your Docker environment if configured.
 
 
+---
+
+
+### Deploy to github pages
+```bash
+npm run deploy  
+```
+
+---
+
 ### Tech Used  
 
 - [React](https://react.dev/docs) – UI library

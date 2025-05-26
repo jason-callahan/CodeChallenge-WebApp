@@ -112,6 +112,7 @@ export const WeatherCard: React.FC<WeatherCardProps> = ({ city, onRemove }) => {
                         className="weather-card__menu-btn"
                         size="small"
                         onClick={handleMenuOpen}
+                        aria-label="card options"
                     >
                         <MoreVertIcon fontSize="small" />
                     </IconButton>

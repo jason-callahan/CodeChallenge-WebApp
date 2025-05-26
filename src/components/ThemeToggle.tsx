@@ -9,7 +9,7 @@ export const ThemeToggleButton = () => {
     const theme = useTheme();
 
     return (
-        <IconButton onClick={toggleTheme} color="inherit">
+        <IconButton onClick={toggleTheme} color="inherit" aria-label="Toggle dark mode">
             {theme.palette.mode === 'dark' ? <LightMode /> : <ModeNight />}
         </IconButton>
     );
