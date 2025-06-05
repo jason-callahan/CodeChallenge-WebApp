@@ -1,6 +1,7 @@
 # World Weather Clock  
 #### _It's a world clock, with weather!_  
-Local time and weather for your global team—at a glance.
+Local time and weather for your global team—at a glance.  
+A fun cross-platform web app built with the developer experience, performance, and efficiency in mind.
 <br/>  
 _**See it in action here: https://jason-callahan.github.io/CodeChallenge-WebApp/**_
 
