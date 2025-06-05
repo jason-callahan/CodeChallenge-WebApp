@@ -17,8 +17,6 @@ export const WeatherCard: React.FC<WeatherCardProps> = ({ city, onRemove }) => {
     const { data, isLoading, error } = useWeather(latitude, longitude);
     const [date, setDate] = useState(new Date());
     const { mode } = useThemeToggle();
-
-    // new!
     const [showForecast, setShowForecast] = useState(false);
 
     // Menu state
@@ -57,8 +55,14 @@ export const WeatherCard: React.FC<WeatherCardProps> = ({ city, onRemove }) => {
         minimumIntegerDigits: 2,
         useGrouping: false
     }).format(date.getSeconds());
+
     const weekday = formatTime({ weekday: 'short' });
     const ampmTime = formatTime({ hour: 'numeric', minute: '2-digit', hour12: true });
+    const dateCode = formatTime({
+        month: '2-digit',
+        day: '2-digit',
+        year: '2-digit'
+    }).replace(/\//g, '');
 
     const getOffsetFromLocalToTimezone = (tz: string): number => {
         const localDate = new Date();
@@ -143,10 +147,13 @@ export const WeatherCard: React.FC<WeatherCardProps> = ({ city, onRemove }) => {
                     })}
                 </div>
             ) : (
-                <div className="weather-card__time">
-                    <span className="time-main">{time}</span>
-                    <span className="time-seconds">:{seconds}</span>
-                </div>
+                <Box>
+                    <div className="weather-card__time">
+                        <span className="date">{dateCode}</span>
+                        <span className="time-main">{time}</span>
+                        <span className="time-seconds">:{seconds}</span>
+                    </div>
+                </Box>
             )}
 
             <div className="weather-card__bottom">

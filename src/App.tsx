@@ -10,17 +10,22 @@ import { ThemeToggleButton } from "./components/ThemeToggle";
 import { AccessTime } from "@mui/icons-material";
 
 function App() {
-  // 1) Load saved cities (if any) from localStorage
+  // Load saved cities (if any) from localStorage
   const [cities, setCities] = useState<CityResult[]>(() => {
     try {
       const stored = localStorage.getItem("cities");
-      return stored ? JSON.parse(stored) : [];
+      if (!stored) return [];
+
+      const parsed = JSON.parse(stored) as CityResult[];
+      return parsed.filter(
+        (city) => city.latitude != null && city.longitude != null
+      );
     } catch {
       return [];
     }
   });
 
-  // 2) Whenever `cities` changes, write it back to localStorage
+  // Save cities to localStorage whenever they change
   useEffect(() => {
     try {
       localStorage.setItem("cities", JSON.stringify(cities));

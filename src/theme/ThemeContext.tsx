@@ -17,9 +17,9 @@ export const ThemeContextProvider: React.FC<{ children: React.ReactNode }> = ({ 
     const [mode, setMode] = useState<ThemeMode>(() => {
         try {
             const storedMode = localStorage.getItem('appTheme') as ThemeMode;
-            return storedMode === 'dark' ? 'dark' : 'light';
+            return storedMode === 'light' ? 'light' : 'dark';
         } catch {
-            return 'light';
+            return 'dark';
         }
     });
 

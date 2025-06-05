@@ -22,3 +22,4 @@
 
 ### Get custom weather
 {{forecasturl}}?{{latlng}}&current=temperature_2m,weathercode,is_day&daily=temperature_2m_max,temperature_2m_min,sunrise,sunset,weathercode&{{format}}
+

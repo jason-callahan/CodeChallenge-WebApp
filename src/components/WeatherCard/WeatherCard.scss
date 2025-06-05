@@ -4,24 +4,16 @@
 
     border-radius: 8px;
     padding: 8px 12px;
-    width: 320px;
+    width: 330px;
     font-family: sans-serif;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    position: relative;
 
     .weather-card__icon {
         width: 36px;
         height: 36px;
-    }
-
-    &.theme-dark {
-        // border: 1px solid rgba(255, 255, 255, 0.4);
-    }
-
-    &.theme-light {
-        // border: 1px solid #ddd;
-        // box-shadow: 0 0px 4px rgba(0, 0, 0, 0.1);
     }
 }
 
@@ -64,6 +56,20 @@
     margin-bottom: 14px;
     line-height: 1;
 
+
+    .date {
+        font-family: 'Roboto Mono', monospace;
+        writing-mode: vertical-lr;
+        rotate: 180deg;
+        text-orientation: sideways;
+
+        font-size: 14px;
+        font-weight: 800;
+        opacity: 0.3;
+        margin-right: auto;
+    }
+
+
     .time-main {
         font-size: 64px;
         font-weight: 500;
@@ -73,6 +79,7 @@
         font-size: 24px;
         margin-left: 4px;
         font-family: 'Roboto Mono', monospace;
+        margin-right: auto;
     }
 }
 

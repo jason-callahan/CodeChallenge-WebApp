@@ -1,30 +1,42 @@
-# React + TypeScript + Vite + Docker + Tauri + Android
+# World Weather Clock  
+#### _It's a world clock, with weather!_  
+Local time and weather for your global team - at a glance.
+<br/>  
+_**See it in action here: https://jason-callahan.github.io/CodeChallenge-WebApp/**_
 
-https://jason-callahan.github.io/CodeChallenge-WebApp/
+![alt text](image-1.png)
 
-This project is a cross-platform application leveraging modern technologies:
+## About this project:
+This project was a submition for a code-challenge where I focused heavily on the developer experience 
+to create a cross-platform application leveraging modern technologies.  These technologies offrer a helpful and efficient  I also explored an open weather api  [open-meteo](https://open-meteo.com/en/docs).
 
-- **React**: JavaScript library for building user interfaces.
-- **TypeScript**: Adds static typing for improved code quality.
-- **Vite**: Fast build tool and development server.
-- **Docker**: Containerizes the app for consistent deployment.
-- **Docker Compose**: Orchestrates multi-container setups.
-- **Tauri**: Builds lightweight desktop apps using web tech.
-- **Android (via Capacitor)**: Packages the app as a native Android application.
+## Features & How to use
+- Search by city using the City Search input for adding clock/weather cards to home page.
+- Change between dark and light mode.
+- Local storage is used to save cards and dark mode.
+- Click the current weather icon to see a 5 day forcast.
+- Delete the card using the card menu.
 
----
+## Technology & Developer Experiene
 
-## How It Works
+### React + TypeScript + Vite + Docker + Tauri + Android
 
-- Develop with React and TypeScript.
-- Use Vite for rapid development and builds.
+- VSCode for the IDE
+  - Launch files for in-container live debugging in vscode and hot-reloading.
+- React and TypeScript for moduler typesafe JS components
+- Vite for rapid web app development and builds.
 - Tauri wraps the web app for desktop (macOS, Windows, Linux).
+  - This includes hot-reloading native app debugging experience.
 - Capacitor enables Android native builds.
 - Docker and Docker Compose provide containerized environments.
+- TanStack react-query and devtools make api calls, caching and debugging easy!
 
----
 
-## Commands
+## The Development Experience
+
+![alt text](image-2.png)
+
+## Scripts & Commands
 
 ### Web (React + TypeScript + Vite)
 ```bash
@@ -60,10 +72,9 @@ docker run -p 3000:3000 your-app-name
 docker-compose up
 docker-compose down
 ```
+<br/>
 
----
-
-## Build Scripts
+### Build Scripts
 
 Automate builds for different platforms:
 
@@ -81,7 +92,6 @@ The `build_android.sh` script:
 5. Assembles a new debug APK.
 6. Installs the APK on a connected device.
 
----
 
 ## VS Code Task: Start Docker Dev Environment
 
@@ -103,10 +113,6 @@ Automate Docker environment startup in VS Code with a custom task:
   - `endsPattern`: "ready in" (adjust as needed)
 - `options.cwd`: `${workspaceFolder}`
 
-> **Note:**  
-> Adjust `endsPattern` to match your container output.
-
----
 
 ## VS Code Debugging (launch.json)
 
@@ -136,37 +142,26 @@ npm run deploy
 
 ---
 
-### Tech Used  
+#### Links
 
-- [React](https://react.dev/docs) – UI library
-- [TypeScript](https://www.typescriptlang.org/docs/) – typed JavaScript
-- [Vite](https://vitejs.dev/guide/) – build tool
-- [Docker](https://docs.docker.com/) – containerization
-- [Docker Compose](https://docs.docker.com/compose/) – multi-container orchestration
-- [Tauri](https://tauri.app/v1/guides/) – desktop apps
-- [Capacitor](https://capacitorjs.com/docs) – native mobile wrapper
-- [Android](https://developer.android.com/docs) – mobile platform
-- [VS Code](https://code.visualstudio.com/docs) – code editor
+- [React](https://react.dev/docs) – JavaScript library for building user interfaces
+- [TypeScript](https://www.typescriptlang.org/docs/) – Statically typed JavaScript
+- [Vite](https://vitejs.dev/guide/) – Fast front-end build tool
+- [Tauri](https://tauri.app/v1/guides/) – Framework for lightweight, secure desktop apps
+- [Capacitor](https://capacitorjs.com/docs) – Cross-platform native runtime for mobile apps
+- [Android](https://developer.android.com/docs) – Mobile OS for app deployment
+- [Docker](https://docs.docker.com/) – Containerization for consistent environments
+- [Docker Compose](https://docs.docker.com/compose/) – Multi-container orchestration
+- [Gradle](https://docs.gradle.org/current/userguide/userguide.html) – Build automation for Android
+- [npm](https://docs.npmjs.com/) – JavaScript/TypeScript package manager
+- [VS Code](https://code.visualstudio.com/docs) – Code editor with integrated tasks/debugging
 - [MUI (Material UI)](https://mui.com/material-ui/getting-started/overview/) – React UI component library
+- [ADB](https://developer.android.com/tools/adb) – Android Debug Bridge for device management
+- [TanStack React Query](https://tanstack.com/query/latest) – Powerful data fetching, caching, and synchronization for React
+- [TanStack React Query Devtools](https://tanstack.com/query/latest/docs/devtools) – Debug and inspect React Query caches and requests
+- [Open-Meteo](https://open-meteo.com/en/docs) – Free weather API used for weather data
 
-- vite - modern front-end build tool
-- react - javascript library for building user interfaces
-- typescript - adds static typing to javascript
-- tauri - framework for building lightweight, secure desktop applications using web technologies
-- docker - containerization platform for consistent and reproducible deployments
-- docker-compose - tool for defining and running multi-container Docker applications
-- capacitor - cross-platform native runtime for building web apps as native mobile apps
-- android - mobile operating system for which the app is packaged and deployed
-- gradle - build automation tool used for Android builds
-- npm - package manager for JavaScript and TypeScript dependencies and scripts
-- vscode - code editor with integrated tasks and debugging support
-- adb - Android Debug Bridge for installing and debugging Android apps
-- shell scripting - automates build and deployment processes
-- chrome - browser used for debugging the web app
-- json - configuration files for tasks and debugging (e.g., launch.json)  
 
----
-
-### Lighthouse Preformance
+## Preformance
 
 ![alt text](image.png)
