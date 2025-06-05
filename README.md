@@ -1,36 +1,34 @@
 # World Weather Clock  
 #### _It's a world clock, with weather!_  
-Local time and weather for your global team - at a glance.
+Local time and weather for your global team—at a glance.
 <br/>  
 _**See it in action here: https://jason-callahan.github.io/CodeChallenge-WebApp/**_
 
 ![alt text](image-1.png)
 
 ## About this project:
-This project was a submition for a code-challenge where I focused heavily on the developer experience 
-to create a cross-platform application leveraging modern technologies.  These technologies offrer a helpful and efficient  I also explored an open weather api  [open-meteo](https://open-meteo.com/en/docs).
+This project was a submission for a code challenge where I focused heavily on the developer experience to create a cross-platform application leveraging modern technologies. These technologies offer a helpful and efficient workflow. I also explored an open weather API: [open-meteo](https://open-meteo.com/en/docs).
 
 ## Features & How to use
-- Search by city using the City Search input for adding clock/weather cards to home page.
-- Change between dark and light mode.
-- Local storage is used to save cards and dark mode.
-- Click the current weather icon to see a 5 day forcast.
-- Delete the card using the card menu.
+- Search by city using the City Search input to add clock/weather cards to the home page.
+- Switch between dark and light mode.
+- Local storage is used to save cards and dark mode preference.
+- Click the current weather icon to see a 5-day forecast.
+- Delete a card using the card menu.
 
-## Technology & Developer Experiene
+## Technology & Developer Experience
 
 ### React + TypeScript + Vite + Docker + Tauri + Android
 
-- VSCode for the IDE
-  - Launch files for in-container live debugging in vscode and hot-reloading.
-- React and TypeScript for moduler typesafe JS components
+- VS Code for the IDE
+  - Launch files for in-container live debugging in VS Code and hot-reloading.
+- React and TypeScript for modular, type-safe JS components.
 - Vite for rapid web app development and builds.
 - Tauri wraps the web app for desktop (macOS, Windows, Linux).
-  - This includes hot-reloading native app debugging experience.
+  - This includes a hot-reloading native app debugging experience.
 - Capacitor enables Android native builds.
 - Docker and Docker Compose provide containerized environments.
-- TanStack react-query and devtools make api calls, caching and debugging easy!
-
+- TanStack React Query and Devtools make API calls, caching, and debugging easy!
 
 ## The Development Experience
 
@@ -92,7 +90,6 @@ The `build_android.sh` script:
 5. Assembles a new debug APK.
 6. Installs the APK on a connected device.
 
-
 ## VS Code Task: Start Docker Dev Environment
 
 Automate Docker environment startup in VS Code with a custom task:
@@ -113,7 +110,6 @@ Automate Docker environment startup in VS Code with a custom task:
   - `endsPattern`: "ready in" (adjust as needed)
 - `options.cwd`: `${workspaceFolder}`
 
-
 ## VS Code Debugging (launch.json)
 
 Configure VS Code to debug your Vite React + TypeScript app in Chrome:
@@ -131,11 +127,9 @@ Configure VS Code to debug your Vite React + TypeScript app in Chrome:
 **Usage:**  
 Select "Debug Vite App in Chrome" in the Run and Debug panel and start debugging. This launches Chrome, attaches the debugger, and manages your Docker environment if configured.
 
-
 ---
 
-
-### Deploy to github pages
+### Deploy to GitHub Pages
 ```bash
 npm run deploy  
 ```
@@ -161,7 +155,6 @@ npm run deploy
 - [TanStack React Query Devtools](https://tanstack.com/query/latest/docs/devtools) – Debug and inspect React Query caches and requests
 - [Open-Meteo](https://open-meteo.com/en/docs) – Free weather API used for weather data
 
-
-## Preformance
+## Performance
 
 ![alt text](image.png)
